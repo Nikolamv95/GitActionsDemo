@@ -26,7 +26,7 @@ jobs:
 
       # Install libraries
       - name: install dependencies
-        run: yarn unstall --frozen-lockfile
+        run: yarn install --frozen-lockfile
 
       # Run tests
       - name: Run test
