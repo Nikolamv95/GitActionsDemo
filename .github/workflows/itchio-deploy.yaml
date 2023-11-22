@@ -1,7 +1,7 @@
 name: Itch.io Deploy Workflow
 
 on:
-  pull_request:
+  push:
     branches:
       - main
     paths:
@@ -19,31 +19,34 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      # Setup Nodejs
       - name: Setup Node.js 16
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: "16.x"
           cache: 'npm'
           cache-dependency-path: tic-tac-toe-project/yarn.lock
+        env:
+          CI: true
 
-      # Install Yarn
-      - name: Install Yarn
+      - name: Install yarn
         run: npm install --global yarn
 
-      # Install libraries
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      # Compile the code
-      - name: Build project
+      - name: yarn build
         run: yarn build
+        env:
+          CI: true
+
+      - run: ls
 
       # Deploy to gitch.io
-      - uses: manleydev/butler-publish-itchio-action@v1.0.3
+      - name: Deploy
+        uses: josephbmanley/butler-publish-itchio-action@v1.0.3
         env:
           BUTLER_CREDENTIALS: ${{ secrets.ITCH_IO_API_KEY }}
           CHANNEL: HTML
-          ITCH_GAME: github-actions-tic-tac-toe-example
-          ITCH_USER: nikolamv05
+          ITCH_GAME: github-actions-nikola
+          ITCH_USER: nikolamv95
           PACKAGE: tic-tac-toe-project/dist
