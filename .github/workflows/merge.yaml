@@ -7,8 +7,6 @@ on:
     paths:
       - typescript-project/**
   workflow_dispatch:
-    permissions:
-      contents: write
 
 jobs:
   merge:
