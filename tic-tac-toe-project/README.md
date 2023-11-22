@@ -1,4 +1,4 @@
-# Phaser 3 - Tic Tac Toe
+# Phaser 4 - Tic Tac Toe
 
 A basic implementation of Tic Tac Toe using the [Phaser 3](https://github.com/photonstorm/phaser) framework.
 
