@@ -1,6 +1,6 @@
 {
 	"name": "@nikolamv95/tsconfig-example",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"description": "Shared TypeScript config for my projects",
 	"license": "MIT",
 	"repository": {
@@ -32,5 +32,3 @@
 		"publish:github": "npm publish --registry https://npm.pkg.github.com/ --ignore-scripts"
 	}
 }
-
-
