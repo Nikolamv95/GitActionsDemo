@@ -1,4 +1,4 @@
-name: Publish Github NPM Package
+name: Publish GitHub NPM Package
 
 on:
   push:
@@ -16,10 +16,12 @@ jobs:
       run:
         working-directory: tsconfig-project
 
+    strategy:
+      fail-fast: true
+
     steps:
       - uses: actions/checkout@v2
 
-      # Setup Nodejs
       - name: Setup Node.js 16
         uses: actions/setup-node@v2
         with:
@@ -34,8 +36,8 @@ jobs:
 
       - name: publish to github
         run: |
-          npm congif set registry https://npm.pkg.github.con
-          npm set //npm.pkg.github.com/:_authThoken ${{ env.NODE_AUTH_TOKEN }}
+          npm config set registry https://npm.pkg.github.com
+          npm set //npm.pkg.github.com/:_authToken ${{ env.NODE_AUTH_TOKEN }}
           npm run publish:github
-        env: 
-          NODE_AUTH_TOKEN: s{{ secrets.GITHUB_TOKEN }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
